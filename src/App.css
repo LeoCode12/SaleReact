@@ -11,11 +11,3 @@ body {
 .App{
   width: 100%;
 }
-
-.contenedor{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}

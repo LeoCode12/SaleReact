@@ -1,5 +1,5 @@
-import {BsFillLockFill, BsPersonFill} from "react-icons/bs"
-import {AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import {MdPerson} from "react-icons/md"
+import {AiFillEye, AiFillLock } from 'react-icons/ai'
 
 import { useState } from "react";
 
@@ -8,9 +8,13 @@ import './style.css'
 
 
 
-function Login (){
+function Login ({correo, contraseña}){
   const [show, setShow] = useState(false)
-  const switchShow = () => setShow(!show)
+  const [color, setColor] = useState(false)
+  const switchShow = () => {
+    setShow(!show)
+    setColor(!color)
+  }
   
   const [password, setPassword] = useState('')
   const onChange = ({currentTarget}) => setPassword(currentTarget.value)
@@ -20,39 +24,39 @@ function Login (){
         <div className="contenedor-login">
           <h1 className="title-login">Iniciar Sesion</h1>
           <Form>
-            <Form.Group className="col mb-3 form-group" controlId="formBasicEmail">
+            <Form.Group className="col mb-3 form-group d-flex" controlId="formBasicEmail">
               <div className="contenedor-icon">
-                <BsPersonFill className="icon-form" size={20} />
+                <MdPerson className="icon-form" size={20} />
               </div>
-              <div className="form-floating form-subgroup">
-                <Form.Control className="form-control" type="email" id="floatingInput" placeholder="Enter email" />
+              <div className="form-floating form-subgroup w-100">
+                <Form.Control className="form-control" id="correo" type="email" placeholder="Enter email" />
                 <Form.Label className="label" for="floatingInput">Correo Electronico</Form.Label>
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-3 form-group" controlId="formBasicPassword">
+            <Form.Group className="mb-3 form-group d-flex" controlId="formBasicPassword">
               <div className="contenedor-icon icon-lock">
-                <BsFillLockFill className="icon-form" size={20} />
+                <AiFillLock className="icon-form mx-1" size={20} />
               </div>
-              <div className="form-floating form-subgroup">
+              <div className="form-floating form-subgroup w-100">
                 <Form.Control 
                 className="form-control input"
                 onChange={onChange}
                 type={show ? 'text' : 'password'}
                 value={password}
-                id="floatingInput" 
+                id="contraseña" 
                 placeholder="Password" />
                 <Form.Label className="label" for="floatingInput">Contraseña</Form.Label>
               </div>
               <Button 
-              variant="light" 
-              className="contenedor-icon btn-login"
+              variant={color ? 'primary' : 'light'}
+              className="btn-login"
               onClick={switchShow} > <AiFillEye className="icon-eye" size={20}/> </Button>
               
             </Form.Group>
 
             <div className="d-grid gap-2">
-              <Button variant="primary" type="submit">
+              <Button variant="outline-primary" type="submit">
                 Iniciar Sesion
               </Button>
             </div>
